@@ -1,46 +1,6 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overzicht Magazijn Jamin</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; background: #ffffff; color: #111111; }
-        header { display: flex; justify-content: space-between; align-items: center; }
-        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
-        th, td { border: 1px solid #bfdbfe; padding: 12px; text-align: left; }
-        th { background: #2563eb; color: #ffffff; }
-        td { color: #111111; }
-        tbody tr:nth-child(odd) { background: #ffffff; }
-        tbody tr:nth-child(even) { background: #eff6ff; }
-        .info-knop {
-            display: inline-block;
-            width: 28px;
-            height: 28px;
-            line-height: 28px;
-            text-align: center;
-            border-radius: 50%;
-            background: #2563eb;
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .allergenen-knop { color: #dc2626; font-size: 24px; font-weight: bold; text-decoration: none; }
-        button { padding: 8px 14px; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <header>
-        <div>
-            <h1>Overzicht Magazijn Jamin</h1>
-            <p>Producten in het magazijn</p>
-        </div>
-
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit">Uitloggen</button>
-        </form>
-    </header>
+<x-magazijn-layout title="Overzicht Magazijn Jamin">
+    <h1>Overzicht Magazijn Jamin</h1>
+    <p>Producten in het magazijn</p>
 
     <table>
         <thead>
@@ -62,7 +22,7 @@
                     <td>{{ $product->magazijn?->AantalAanwezig ?? 'NULL' }}</td>
                     <td>
                         <a
-                            class="allergenen-knop"
+                            class="kruis"
                             href="{{ route('products.allergenen', $product) }}"
                             title="Bekijk allergeneninformatie"
                             aria-label="Bekijk allergeneninformatie van {{ $product->Naam }}"
@@ -70,7 +30,7 @@
                     </td>
                     <td>
                         <a
-                            class="info-knop"
+                            class="vraag"
                             href="{{ route('products.show', $product) }}"
                             title="Bekijk leverantie-informatie"
                             aria-label="Bekijk leverantie-informatie van {{ $product->Naam }}"
@@ -80,5 +40,4 @@
             @endforeach
         </tbody>
     </table>
-</body>
-</html>
+</x-magazijn-layout>
