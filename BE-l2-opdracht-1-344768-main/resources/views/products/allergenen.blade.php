@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overzicht Allergenen</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; background: #ffffff; color: #111111; }
-        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
-        th, td { border: 1px solid #bfdbfe; padding: 12px; text-align: left; }
-        th { background: #2563eb; color: #ffffff; }
-        td { color: #111111; }
-        tbody tr:nth-child(odd) { background: #ffffff; }
-        tbody tr:nth-child(even) { background: #eff6ff; }
-        .terug { display: inline-block; margin-top: 20px; }
-    </style>
-</head>
-<body>
+<x-magazijn-layout title="Overzicht Allergenen">
     <h1>Overzicht Allergenen</h1>
 
     <p><strong>Naam Product:</strong> {{ $product->Naam }}</p>
@@ -57,5 +40,4 @@
     @endif
 
     <a class="terug" href="{{ route('products.index') }}">Terug naar Overzicht Magazijn Jamin</a>
-</body>
-</html>
+</x-magazijn-layout>
