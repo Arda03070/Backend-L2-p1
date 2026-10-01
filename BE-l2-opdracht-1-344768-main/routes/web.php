@@ -5,8 +5,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route(Auth::check() ? 'products.index' : 'login');
+    if (Auth::check()) {
+        return redirect()->route('products.index');
+    }
+
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return redirect()->route('products.index');
+})->middleware('auth')->name('dashboard');
 
 Route::middleware(['auth', 'can:access-medewerker-dashboard'])->group(function () {
     Route::get('/products', [ProductController::class, 'index'])
