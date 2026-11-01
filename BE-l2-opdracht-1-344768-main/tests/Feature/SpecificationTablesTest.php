@@ -14,7 +14,7 @@ class SpecificationTablesTest extends TestCase
     {
         $this->assertDatabaseCount('Product', 13);
         $this->assertDatabaseCount('Allergeen', 5);
-        $this->assertDatabaseCount('Leverancier', 5);
+        $this->assertDatabaseCount('Leverancier', 6);
         $this->assertDatabaseCount('Magazijn', 13);
         $this->assertDatabaseCount('ProductPerAllergeen', 12);
         $this->assertDatabaseCount('ProductPerLeverancier', 17);
