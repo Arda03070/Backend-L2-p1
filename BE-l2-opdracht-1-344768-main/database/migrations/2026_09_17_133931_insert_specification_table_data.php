@@ -86,19 +86,19 @@ return new class extends Migration
         DB::table('Product')->delete();
 
         DB::table('Product')->insert([
-            ['Id' => 1, 'Naam' => 'Mintnopjes', 'Barcode' => '8719587231278'],
-            ['Id' => 2, 'Naam' => 'Schoolkrijt', 'Barcode' => '8719587326713'],
-            ['Id' => 3, 'Naam' => 'Honingdrop', 'Barcode' => '8719587327836'],
-            ['Id' => 4, 'Naam' => 'Zure Beren', 'Barcode' => '8719587321441'],
-            ['Id' => 5, 'Naam' => 'Cola Flesjes', 'Barcode' => '8719587321237'],
-            ['Id' => 6, 'Naam' => 'Turtles', 'Barcode' => '8719587322245'],
-            ['Id' => 7, 'Naam' => 'Witte Muizen', 'Barcode' => '8719587328256'],
-            ['Id' => 8, 'Naam' => 'Reuzen Slangen', 'Barcode' => '8719587325641'],
-            ['Id' => 9, 'Naam' => 'Zoute Rijen', 'Barcode' => '8719587322739'],
-            ['Id' => 10, 'Naam' => 'Winegums', 'Barcode' => '8719587327527'],
-            ['Id' => 11, 'Naam' => 'Drop Munten', 'Barcode' => '8719587322345'],
-            ['Id' => 12, 'Naam' => 'Kruis Drop', 'Barcode' => '8719587322265'],
-            ['Id' => 13, 'Naam' => 'Zoute Ruitjes', 'Barcode' => '8719587323256'],
+            ['Id' => 1, 'Naam' => 'Mintnopjes', 'Barcode' => '8719587231278', 'IsActief' => true],
+            ['Id' => 2, 'Naam' => 'Schoolkrijt', 'Barcode' => '8719587326713', 'IsActief' => true],
+            ['Id' => 3, 'Naam' => 'Honingdrop', 'Barcode' => '8719587327836', 'IsActief' => true],
+            ['Id' => 4, 'Naam' => 'Zure Beren', 'Barcode' => '8719587321441', 'IsActief' => true],
+            ['Id' => 5, 'Naam' => 'Cola Flesjes', 'Barcode' => '8719587321237', 'IsActief' => true],
+            ['Id' => 6, 'Naam' => 'Turtles', 'Barcode' => '8719587322245', 'IsActief' => true],
+            ['Id' => 7, 'Naam' => 'Witte Muizen', 'Barcode' => '8719587328256', 'IsActief' => true],
+            ['Id' => 8, 'Naam' => 'Reuzen Slangen', 'Barcode' => '8719587325641', 'IsActief' => true],
+            ['Id' => 9, 'Naam' => 'Zoute Rijen', 'Barcode' => '8719587322739', 'IsActief' => true],
+            ['Id' => 10, 'Naam' => 'Winegums', 'Barcode' => '8719587327527', 'IsActief' => false],
+            ['Id' => 11, 'Naam' => 'Drop Munten', 'Barcode' => '8719587322345', 'IsActief' => true],
+            ['Id' => 12, 'Naam' => 'Kruis Drop', 'Barcode' => '8719587322265', 'IsActief' => true],
+            ['Id' => 13, 'Naam' => 'Zoute Ruitjes', 'Barcode' => '8719587323256', 'IsActief' => true],
         ]);
 
         DB::table('Allergeen')->insert([
@@ -115,6 +115,7 @@ return new class extends Migration
             ['Id' => 3, 'Naam' => 'Haribo', 'ContactPersoon' => 'Sven Stalman', 'LeverancierNummer' => 'L1029324748', 'Mobiel' => '06-24383291'],
             ['Id' => 4, 'Naam' => 'Basset', 'ContactPersoon' => 'Joyce Stelterberg', 'LeverancierNummer' => 'L1023845773', 'Mobiel' => '06-48293823'],
             ['Id' => 5, 'Naam' => 'De Bron', 'ContactPersoon' => 'Remco Veenstra', 'LeverancierNummer' => 'L1023857736', 'Mobiel' => '06-34291234'],
+            ['Id' => 6, 'Naam' => 'Quality Street', 'ContactPersoon' => 'Johan Nooij', 'LeverancierNummer' => 'L1029234586', 'Mobiel' => '06-23458456'],
         ]);
 
         DB::table('Magazijn')->insert([
@@ -149,22 +150,22 @@ return new class extends Migration
         ]);
 
         DB::table('ProductPerLeverancier')->insert([
-            ['Id' => 1, 'LeverancierId' => 1, 'ProductId' => 1, 'DatumLevering' => '2024-10-09', 'Aantal' => 23, 'DatumEerstVolgendeLevering' => '2024-10-16'],
-            ['Id' => 2, 'LeverancierId' => 1, 'ProductId' => 1, 'DatumLevering' => '2024-10-18', 'Aantal' => 21, 'DatumEerstVolgendeLevering' => '2024-10-25'],
-            ['Id' => 3, 'LeverancierId' => 1, 'ProductId' => 2, 'DatumLevering' => '2024-10-09', 'Aantal' => 12, 'DatumEerstVolgendeLevering' => '2024-10-16'],
-            ['Id' => 4, 'LeverancierId' => 1, 'ProductId' => 3, 'DatumLevering' => '2024-10-10', 'Aantal' => 11, 'DatumEerstVolgendeLevering' => '2024-10-17'],
-            ['Id' => 5, 'LeverancierId' => 2, 'ProductId' => 4, 'DatumLevering' => '2024-10-14', 'Aantal' => 16, 'DatumEerstVolgendeLevering' => '2024-10-21'],
-            ['Id' => 6, 'LeverancierId' => 2, 'ProductId' => 4, 'DatumLevering' => '2024-10-21', 'Aantal' => 23, 'DatumEerstVolgendeLevering' => '2024-10-28'],
-            ['Id' => 7, 'LeverancierId' => 2, 'ProductId' => 5, 'DatumLevering' => '2024-10-14', 'Aantal' => 45, 'DatumEerstVolgendeLevering' => '2024-10-21'],
-            ['Id' => 8, 'LeverancierId' => 2, 'ProductId' => 6, 'DatumLevering' => '2024-10-14', 'Aantal' => 30, 'DatumEerstVolgendeLevering' => '2024-10-21'],
-            ['Id' => 9, 'LeverancierId' => 3, 'ProductId' => 7, 'DatumLevering' => '2024-10-12', 'Aantal' => 12, 'DatumEerstVolgendeLevering' => '2024-10-19'],
-            ['Id' => 10, 'LeverancierId' => 3, 'ProductId' => 7, 'DatumLevering' => '2024-10-19', 'Aantal' => 23, 'DatumEerstVolgendeLevering' => '2024-10-26'],
-            ['Id' => 11, 'LeverancierId' => 3, 'ProductId' => 8, 'DatumLevering' => '2024-10-10', 'Aantal' => 12, 'DatumEerstVolgendeLevering' => '2024-10-17'],
-            ['Id' => 12, 'LeverancierId' => 3, 'ProductId' => 9, 'DatumLevering' => '2024-10-11', 'Aantal' => 1, 'DatumEerstVolgendeLevering' => '2024-10-18'],
-            ['Id' => 13, 'LeverancierId' => 4, 'ProductId' => 10, 'DatumLevering' => '2024-10-16', 'Aantal' => 24, 'DatumEerstVolgendeLevering' => '2024-10-30'],
-            ['Id' => 14, 'LeverancierId' => 5, 'ProductId' => 11, 'DatumLevering' => '2024-10-10', 'Aantal' => 47, 'DatumEerstVolgendeLevering' => '2024-10-17'],
-            ['Id' => 15, 'LeverancierId' => 5, 'ProductId' => 11, 'DatumLevering' => '2024-10-19', 'Aantal' => 60, 'DatumEerstVolgendeLevering' => '2024-10-26'],
-            ['Id' => 16, 'LeverancierId' => 5, 'ProductId' => 12, 'DatumLevering' => '2024-10-11', 'Aantal' => 45, 'DatumEerstVolgendeLevering' => null],
+            ['Id' => 1, 'LeverancierId' => 1, 'ProductId' => 1, 'DatumLevering' => '2024-11-09', 'Aantal' => 23, 'DatumEerstVolgendeLevering' => '2024-11-16'],
+            ['Id' => 2, 'LeverancierId' => 1, 'ProductId' => 1, 'DatumLevering' => '2024-11-18', 'Aantal' => 21, 'DatumEerstVolgendeLevering' => '2024-11-25'],
+            ['Id' => 3, 'LeverancierId' => 1, 'ProductId' => 2, 'DatumLevering' => '2024-11-09', 'Aantal' => 12, 'DatumEerstVolgendeLevering' => '2024-11-16'],
+            ['Id' => 4, 'LeverancierId' => 1, 'ProductId' => 3, 'DatumLevering' => '2024-11-10', 'Aantal' => 11, 'DatumEerstVolgendeLevering' => '2024-11-17'],
+            ['Id' => 5, 'LeverancierId' => 2, 'ProductId' => 4, 'DatumLevering' => '2024-11-14', 'Aantal' => 16, 'DatumEerstVolgendeLevering' => '2024-11-21'],
+            ['Id' => 6, 'LeverancierId' => 2, 'ProductId' => 4, 'DatumLevering' => '2024-11-21', 'Aantal' => 23, 'DatumEerstVolgendeLevering' => '2024-11-28'],
+            ['Id' => 7, 'LeverancierId' => 2, 'ProductId' => 5, 'DatumLevering' => '2024-11-14', 'Aantal' => 45, 'DatumEerstVolgendeLevering' => '2024-11-21'],
+            ['Id' => 8, 'LeverancierId' => 2, 'ProductId' => 6, 'DatumLevering' => '2024-11-14', 'Aantal' => 30, 'DatumEerstVolgendeLevering' => '2024-11-21'],
+            ['Id' => 9, 'LeverancierId' => 3, 'ProductId' => 7, 'DatumLevering' => '2024-11-12', 'Aantal' => 12, 'DatumEerstVolgendeLevering' => '2024-11-19'],
+            ['Id' => 10, 'LeverancierId' => 3, 'ProductId' => 7, 'DatumLevering' => '2024-11-19', 'Aantal' => 23, 'DatumEerstVolgendeLevering' => '2024-11-26'],
+            ['Id' => 11, 'LeverancierId' => 3, 'ProductId' => 8, 'DatumLevering' => '2024-11-10', 'Aantal' => 12, 'DatumEerstVolgendeLevering' => '2024-11-17'],
+            ['Id' => 12, 'LeverancierId' => 3, 'ProductId' => 9, 'DatumLevering' => '2024-11-11', 'Aantal' => 1, 'DatumEerstVolgendeLevering' => '2024-11-18'],
+            ['Id' => 13, 'LeverancierId' => 4, 'ProductId' => 10, 'DatumLevering' => '2024-11-16', 'Aantal' => 24, 'DatumEerstVolgendeLevering' => '2024-11-30'],
+            ['Id' => 14, 'LeverancierId' => 5, 'ProductId' => 11, 'DatumLevering' => '2024-11-10', 'Aantal' => 47, 'DatumEerstVolgendeLevering' => '2024-11-17'],
+            ['Id' => 15, 'LeverancierId' => 5, 'ProductId' => 11, 'DatumLevering' => '2024-11-19', 'Aantal' => 60, 'DatumEerstVolgendeLevering' => '2024-11-26'],
+            ['Id' => 16, 'LeverancierId' => 5, 'ProductId' => 12, 'DatumLevering' => '2024-11-11', 'Aantal' => 45, 'DatumEerstVolgendeLevering' => null],
         ]);
 
         Schema::enableForeignKeyConstraints();

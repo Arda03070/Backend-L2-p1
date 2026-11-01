@@ -14,6 +14,7 @@ return new class extends Migration
                 $table->increments('Id');
                 $table->string('Naam');
                 $table->char('Barcode', 13);
+                $this->systeemVelden($table);
             });
         }
 
@@ -23,6 +24,7 @@ return new class extends Migration
                 $table->increments('Id');
                 $table->string('Naam');
                 $table->string('Omschrijving');
+                $this->systeemVelden($table);
             });
         }
 
@@ -34,6 +36,7 @@ return new class extends Migration
                 $table->string('ContactPersoon');
                 $table->string('LeverancierNummer', 20);
                 $table->string('Mobiel', 20);
+                $this->systeemVelden($table);
             });
         }
 
@@ -44,6 +47,7 @@ return new class extends Migration
                 $table->unsignedInteger('ProductId');
                 $table->decimal('VerpakkingsEenheidInKilogram', 5, 2);
                 $table->unsignedInteger('AantalAanwezig')->nullable();
+                $this->systeemVelden($table);
                 $table->foreign('ProductId', 'FK_Magazijn_Product')
                     ->references('Id')
                     ->on('Product');
@@ -56,6 +60,7 @@ return new class extends Migration
                 $table->increments('Id');
                 $table->unsignedInteger('ProductId');
                 $table->unsignedInteger('AllergeenId');
+                $this->systeemVelden($table);
                 $table->foreign('ProductId', 'FK_ProductPerAllergeen_Product')
                     ->references('Id')
                     ->on('Product');
@@ -74,6 +79,7 @@ return new class extends Migration
                 $table->date('DatumLevering');
                 $table->unsignedInteger('Aantal');
                 $table->date('DatumEerstVolgendeLevering')->nullable();
+                $this->systeemVelden($table);
                 $table->foreign('LeverancierId', 'FK_ProductPerLeverancier_Leverancier')
                     ->references('Id')
                     ->on('Leverancier');
@@ -82,6 +88,14 @@ return new class extends Migration
                     ->on('Product');
             });
         }
+    }
+
+    private function systeemVelden(Blueprint $table): void
+    {
+        $table->boolean('IsActief')->default(true);
+        $table->string('Opmerking', 255)->nullable();
+        $table->dateTime('DatumAangemaakt')->useCurrent();
+        $table->dateTime('DatumGewijzigd')->useCurrent();
     }
 
     public function down(): void
