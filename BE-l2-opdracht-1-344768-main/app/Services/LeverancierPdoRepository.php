@@ -87,21 +87,32 @@ class LeverancierPdoRepository
             )[0] ?? null;
         }
 
-        return $this->connection
-            ->table('Leverancier as l')
-            ->join('Product as p', 'p.Id', '=', $productId)
-            ->select([
-                'l.Id as LeverancierId',
-                'l.Naam as LeverancierNaam',
-                'l.ContactPersoon',
-                'l.LeverancierNummer',
-                'l.Mobiel',
-                'p.Id as ProductId',
-                'p.Naam as ProductNaam',
-                'p.IsActief as ProductIsActief',
-            ])
-            ->where('l.Id', $leverancierId)
+        $leverancier = $this->connection
+            ->table('Leverancier')
+            ->select(['Id', 'Naam', 'ContactPersoon', 'LeverancierNummer', 'Mobiel'])
+            ->where('Id', $leverancierId)
             ->first();
+
+        $product = $this->connection
+            ->table('Product')
+            ->select(['Id', 'Naam', 'IsActief'])
+            ->where('Id', $productId)
+            ->first();
+
+        if ($leverancier === null || $product === null) {
+            return null;
+        }
+
+        return (object) [
+            'LeverancierId' => $leverancier->Id,
+            'LeverancierNaam' => $leverancier->Naam,
+            'ContactPersoon' => $leverancier->ContactPersoon,
+            'LeverancierNummer' => $leverancier->LeverancierNummer,
+            'Mobiel' => $leverancier->Mobiel,
+            'ProductId' => $product->Id,
+            'ProductNaam' => $product->Naam,
+            'ProductIsActief' => $this->isActief($product->IsActief),
+        ];
     }
 
     /**
@@ -148,7 +159,7 @@ class LeverancierPdoRepository
             throw new RuntimeException('Product of leverancier is niet gevonden.');
         }
 
-        if (! (bool) $product->ProductIsActief) {
+        if (! $this->isActief($product->ProductIsActief)) {
             return [
                 'status' => 'inactive',
                 'message' => sprintf(
@@ -209,6 +220,19 @@ class LeverancierPdoRepository
         $statement->closeCursor();
 
         return $rows;
+    }
+
+    private function isActief(mixed $value): bool
+    {
+        if (is_bool($value)) {
+            return $value;
+        }
+
+        if (is_int($value) || is_numeric($value)) {
+            return (int) $value === 1;
+        }
+
+        return $value !== "\0" && $value !== '' && $value !== '0' && $value !== null;
     }
 
     private function usesStoredProcedures(): bool

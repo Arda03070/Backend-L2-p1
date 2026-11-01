@@ -23,14 +23,23 @@
                     <th>Naam product</th>
                     <th>Aantal in magazijn</th>
                     <th>Laatste levering</th>
+                    <th>Nieuwe levering</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($producten as $product)
                     <tr>
                         <td>{{ $product->ProductNaam }}</td>
-                        <td>{{ $product->AantalAanwezig ?? 0 }}</td>
+                        <td>{{ $product->AantalAanwezig ?? '' }}</td>
                         <td>{{ \Illuminate\Support\Carbon::parse($product->DatumLaatsteLevering)->format('d-m-Y') }}</td>
+                        <td>
+                            <a
+                                class="plus-icoon"
+                                href="{{ route('leveringen.create', [$leverancier->Id, $product->ProductId]) }}"
+                                title="Nieuwe levering voor {{ $product->ProductNaam }}"
+                                aria-label="Nieuwe levering voor {{ $product->ProductNaam }}"
+                            >+</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

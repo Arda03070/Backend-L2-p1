@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LeverancierController;
+use App\Http\Controllers\LeveringController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,12 @@ Route::middleware(['auth', 'can:access-medewerker-dashboard'])->group(function (
 
     Route::get('/leveranciers/{leverancier}/producten', [LeverancierController::class, 'producten'])
         ->name('leveranciers.producten');
+
+    Route::get('/leveranciers/{leverancier}/producten/{product}/levering', [LeveringController::class, 'create'])
+        ->name('leveringen.create');
+
+    Route::post('/leveranciers/{leverancier}/producten/{product}/levering', [LeveringController::class, 'store'])
+        ->name('leveringen.store');
 });
 
 require __DIR__.'/auth.php';

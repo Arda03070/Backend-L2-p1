@@ -189,7 +189,7 @@ BEGIN
         ,l.Mobiel
         ,p.Id AS ProductId
         ,p.Naam AS ProductNaam
-        ,p.IsActief AS ProductIsActief
+        ,CAST(p.IsActief AS UNSIGNED) AS ProductIsActief
     FROM Leverancier AS l
     INNER JOIN Product AS p
         ON p.Id = pProductId
