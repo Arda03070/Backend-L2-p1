@@ -20,12 +20,19 @@
             .kruis { color: #b00020; font-size: 22px; font-weight: bold; text-decoration: none; }
             .vraag { display: inline-block; width: 22px; height: 22px; line-height: 22px; text-align: center; background: #1f4e79; color: #fff; text-decoration: none; font-weight: bold; }
             .terug { display: inline-block; margin-top: 18px; }
+            .box-icoon, .plus-icoon { display: inline-block; font-size: 20px; text-decoration: none; color: #1f4e79; }
+            nav.menu { display: flex; gap: 16px; }
+            .melding { background: #fff3cd; border: 1px solid #ffe69c; padding: 12px; margin: 16px 0; }
         </style>
     </head>
     <body>
         <header>
             <div class="balk">
-                <a href="{{ route('products.index') }}">Magazijn Jamin</a>
+                <nav class="menu">
+                    <a href="{{ url('/') }}">Home</a>
+                    <a href="{{ route('products.index') }}">Overzicht producten Jamin</a>
+                    <a href="{{ route('leveranciers.index') }}">Overzicht Leveranciers</a>
+                </nav>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit">Uitloggen</button>
