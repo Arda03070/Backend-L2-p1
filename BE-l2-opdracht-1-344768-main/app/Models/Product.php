@@ -15,6 +15,16 @@ class Product extends Model
 
     public $timestamps = false;
 
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'IsActief' => 'boolean',
+        ];
+    }
+
     public function magazijn(): HasOne
     {
         return $this->hasOne(Magazijn::class, 'ProductId', 'Id');
